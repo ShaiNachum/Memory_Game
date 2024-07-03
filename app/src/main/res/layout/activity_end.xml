@@ -50,6 +50,21 @@
         android:layout_below="@+id/end_LBL_attempts"
         />
 
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/end_LBL_balance"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:textStyle="bold|italic"
+        android:autoSizeTextType="uniform"
+        android:maxLines="1"
+        android:textColor="@color/primary_color"
+        android:text="Current balance: 0"
+        android:layout_below="@+id/end_LBL_score"
+        />
+
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/end_BTN_backToOpening"
         android:layout_width="50dp"

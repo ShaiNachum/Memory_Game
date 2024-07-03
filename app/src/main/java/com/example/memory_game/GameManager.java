@@ -82,6 +82,7 @@ public class GameManager {
 
     public int getScore(){
         return score;
+
     }
 
     public boolean checkMatch() {

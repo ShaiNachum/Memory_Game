@@ -42,4 +42,8 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
 
     implementation(libs.glide)
+
+    // Rest API calls
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
 }

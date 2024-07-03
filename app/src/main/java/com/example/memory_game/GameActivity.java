@@ -12,7 +12,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-
 public class GameActivity extends AppCompatActivity {
     private static final int ROWS = 4;
     private static final int COLS = 4;
@@ -30,18 +29,12 @@ public class GameActivity extends AppCompatActivity {
     private boolean generalTimerOn;
     private long startTime;
     private int delay;
-    private String playerName;
-    private String playerEmail;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-
-        Intent intent = getIntent();
-        this.playerName = intent.getStringExtra("playerName");
-        this.playerEmail = intent.getStringExtra("playerEmail");
 
         openCardsTimerOn = false;
 
@@ -160,8 +153,6 @@ public class GameActivity extends AppCompatActivity {
     private void gameOver() {
         generalStopTimer();
         Intent intent = new Intent(GameActivity.this, EndActivity.class);
-        intent.putExtra("playerName", playerName);
-        intent.putExtra("playerEmail", playerEmail);
         intent.putExtra("attempts", gameManager.getAttempts());
         intent.putExtra("score", gameManager.getScore());
         startActivity(intent);
