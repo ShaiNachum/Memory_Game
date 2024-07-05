@@ -29,12 +29,18 @@ public class GameActivity extends AppCompatActivity {
     private boolean generalTimerOn;
     private long startTime;
     private int delay;
+    private String email;
+    private String superapp;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        Intent intent = getIntent();
+        this.superapp = intent.getStringExtra("superapp");
+        this.email = intent.getStringExtra("email");
 
         openCardsTimerOn = false;
 
@@ -45,6 +51,7 @@ public class GameActivity extends AppCompatActivity {
         initViews();
 
         generalStartTimer();
+
     }
 
     @Override
@@ -153,6 +160,8 @@ public class GameActivity extends AppCompatActivity {
     private void gameOver() {
         generalStopTimer();
         Intent intent = new Intent(GameActivity.this, EndActivity.class);
+        intent.putExtra("superapp", superapp);
+        intent.putExtra("email",email);
         intent.putExtra("attempts", gameManager.getAttempts());
         intent.putExtra("score", gameManager.getScore());
         startActivity(intent);
@@ -232,4 +241,6 @@ public class GameActivity extends AppCompatActivity {
         main_LBL_score = findViewById(R.id.main_LBL_score);
         main_LBL_time = findViewById(R.id.main_LBL_time);
     }
+
+
 }

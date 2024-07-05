@@ -19,5 +19,10 @@ public interface UserApi {
             @Path("email")String email
     );
 
-    //@PUT()
+    @PUT("users/{superapp}/{userEmail}")
+    Call<User> updateUser(
+            @Path("superapp") String superapp,
+            @Path("userEmail")String userEmail,
+            @Body User updatedUser
+    );
 }
