@@ -1,5 +1,8 @@
 package com.example.memory_game;
 
+import com.example.memory_game.Model.Card;
+import com.example.memory_game.UI.DataManager;
+
 import java.util.ArrayList;
 
 public class GameManager {

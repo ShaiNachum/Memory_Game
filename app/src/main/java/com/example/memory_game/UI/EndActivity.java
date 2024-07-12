@@ -1,16 +1,16 @@
-package com.example.memory_game;
+package com.example.memory_game.UI;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
+import com.example.memory_game.R;
+import com.example.memory_game.Model.User;
+import com.example.memory_game.Utilities.UserApi;
+import com.example.memory_game.Utilities.UserController;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textview.MaterialTextView;
 

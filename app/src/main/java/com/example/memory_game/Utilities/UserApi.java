@@ -1,4 +1,7 @@
-package com.example.memory_game;
+package com.example.memory_game.Utilities;
+
+import com.example.memory_game.Model.NewUser;
+import com.example.memory_game.Model.User;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -11,7 +14,7 @@ import retrofit2.http.Path;
 public interface UserApi {
 
     @POST("users")
-    Call<NewUser> createUser(@Body NewUser newUser);
+    Call<User> createUser(@Body NewUser newUser);
 
     @GET("users/login/{superapp}/{email}")
     Call<User> findUser(

@@ -1,4 +1,6 @@
-package com.example.memory_game;
+package com.example.memory_game.UI;
+
+import com.example.memory_game.Model.Card;
 
 import java.util.ArrayList;
 import java.util.Collections;

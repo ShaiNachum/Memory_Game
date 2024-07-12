@@ -1,4 +1,4 @@
-package com.example.memory_game;
+package com.example.memory_game.Model;
 
 import java.util.UUID;
 

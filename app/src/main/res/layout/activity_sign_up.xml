@@ -5,10 +5,10 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.WelcomeActivity">
+    tools:context=".UI.SignUpActivity">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/welcome_LBL_welcome"
+        android:id="@+id/signup_LBL_signUp"
         android:layout_width="match_parent"
         android:layout_marginHorizontal="64dp"
         android:layout_centerHorizontal="true"
@@ -19,12 +19,37 @@
         android:autoSizeTextType="uniform"
         android:maxLines="1"
         android:textColor="@color/primary_color"
-        android:text="@string/welcome"/>
-
-
+        android:text="@string/sign_up"/>
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/welcome_LBL_enter_email"
+        android:id="@+id/signup_LBL_enter_familyName"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="75dp"
+        android:layout_marginTop="64dp"
+        android:layout_height="55dp"
+        android:gravity="center"
+        android:textStyle="bold|italic"
+        android:autoSizeTextType="uniform"
+        android:maxLines="1"
+        android:textColor="@color/primary_color"
+        android:text="Enter Family Name"
+        android:layout_below="@+id/signup_LBL_signUp"
+        />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/signup_EDT_familyName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/signup_LBL_enter_familyName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="16dp"
+        android:hint="Family Name"
+        android:minHeight="48dp"
+        />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/signup_LBL_enter_email"
         android:layout_width="match_parent"
         android:layout_marginHorizontal="128dp"
         android:layout_marginTop="32dp"
@@ -35,14 +60,14 @@
         android:maxLines="1"
         android:textColor="@color/primary_color"
         android:text="@string/enter_email"
-        android:layout_below="@+id/welcome_LBL_welcome"
+        android:layout_below="@+id/signup_EDT_familyName"
         />
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/welcome_EDT_email"
+        android:id="@+id/signup_EDT_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/welcome_LBL_enter_email"
+        android:layout_below="@+id/signup_LBL_enter_email"
         android:layout_centerHorizontal="true"
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="16dp"
@@ -50,33 +75,14 @@
         android:minHeight="48dp"
         />
 
-
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/welcome_BTN_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@id/welcome_MTV_signUp"
-        android:text="Log In" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/welcome_MTV_signUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/signup_BTN_signup"
         android:layout_alignParentBottom="true"
-        android:text="Don't have user? Click here!"
-        android:layout_marginBottom="80dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:textStyle="bold"
-        android:textColor="@color/blue"
-        >
-
-    </com.google.android.material.textview.MaterialTextView>
-
-
-
-
+        android:layout_marginBottom="60dp"
+        android:text="Sign Up" />
 
 
 </RelativeLayout>

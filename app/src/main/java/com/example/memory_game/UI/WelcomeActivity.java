@@ -1,13 +1,20 @@
-package com.example.memory_game;
+package com.example.memory_game.UI;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
 
+import com.example.memory_game.Model.NewUser;
+import com.example.memory_game.R;
+import com.example.memory_game.Model.User;
+import com.example.memory_game.Utilities.UserApi;
+import com.example.memory_game.Utilities.UserController;
+import com.example.memory_game.Model.UserRoleEnum;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialTextView;
 
@@ -18,13 +25,11 @@ import retrofit2.Response;
 
 public class WelcomeActivity extends AppCompatActivity {
     private MaterialTextView welcome_LBL_welcome;
-    private MaterialTextView welcome_LBL_enter_name;
-    private AppCompatEditText welcome_EDT_name;
     private MaterialTextView welcome_LBL_enter_email;
     private AppCompatEditText welcome_EDT_email;
     private MaterialButton welcome_BTN_signup;
     private MaterialButton welcome_BTN_login;
-    private boolean isNameEntered;
+    private MaterialTextView welcome_MTV_signUp;
     UserApi apiService = UserController.getRetrofitInstance().create(UserApi.class);
 
 
@@ -38,14 +43,11 @@ public class WelcomeActivity extends AppCompatActivity {
     }
 
     private void initViews() {
-        welcome_BTN_signup.setOnClickListener(View -> signUpClicked());
         welcome_BTN_login.setOnClickListener(View -> logInClicked());
+        welcome_MTV_signUp.setOnClickListener(View -> SwitchToSignUpActivity());
     }
 
     private void logInClicked() {
-        String playerName = welcome_EDT_name.getText().toString();
-        if (isNotNullOrEmpty(playerName))
-            this.isNameEntered = true;
         String email = welcome_EDT_email.getText().toString();
         Call<User> call = apiService.findUser("MiniHeros", email);
 
@@ -72,68 +74,27 @@ public class WelcomeActivity extends AppCompatActivity {
         });
     }
 
-
-    private void signUpClicked() {
-        String playerName = welcome_EDT_name.getText().toString();
-        if (isNotNullOrEmpty(playerName))
-            this.isNameEntered = true;
-
-        String email = welcome_EDT_email.getText().toString();
-
-        NewUser newUser = new NewUser();
-        newUser.setEmail(email);
-        newUser.setAvatar("child#0");
-        newUser.setUsername(playerName);
-        newUser.setRole(UserRoleEnum.MINIAPP_USER);
-
-        Call<NewUser> call = apiService.createUser(newUser);
-        call.enqueue(new Callback<NewUser>() {
-            @Override
-            public void onResponse(Call<NewUser> call, Response<NewUser> response) {
-                NewUser createdNewUser = response.body();
-                if (response.isSuccessful() && createdNewUser.getEmail() != newUser.getEmail()) {
-                    Toast.makeText(WelcomeActivity.this, "User created successfully - now sign in", Toast.LENGTH_LONG).show();
-
-                } else {
-                    Toast.makeText(WelcomeActivity.this, "Failed to sign up user", Toast.LENGTH_LONG).show();
-                    Log.e("Request failed: ", response.message());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<NewUser> call, Throwable t) {
-                Toast.makeText(WelcomeActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-    }
-
-
-    public boolean isNotNullOrEmpty(String input) {
-        return input != null && !input.trim().isEmpty();
+    private void SwitchToSignUpActivity(){
+        Intent intent = new Intent(WelcomeActivity.this, SignUpActivity.class);
+        startActivity(intent);
+        this.finish();
     }
 
 
     private void findViews() {
         welcome_LBL_welcome = findViewById(R.id.welcome_LBL_welcome);
-        welcome_LBL_enter_name = findViewById(R.id.welcome_LBL_enter_name);
-        welcome_EDT_name = findViewById(R.id.welcome_EDT_name);
-        welcome_BTN_signup = findViewById(R.id.welcome_BTN_signup);
         welcome_BTN_login = findViewById(R.id.welcome_BTN_login);
         welcome_LBL_enter_email = findViewById(R.id.welcome_LBL_enter_email);
         welcome_EDT_email = findViewById(R.id.welcome_EDT_email);
+        welcome_MTV_signUp = findViewById(R.id.welcome_MTV_signUp);
     }
 
 
     private void SwitchToGameIntent(String superapp, String email) {
-        if(isNameEntered) {
-            Intent intent = new Intent(WelcomeActivity.this, GameActivity.class);
-            intent.putExtra("superapp", superapp);
-            intent.putExtra("email", email);
-            startActivity(intent);
-            this.finish();
-
-        }
+        Intent intent = new Intent(WelcomeActivity.this, GameActivity.class);
+        intent.putExtra("superapp", superapp);
+        intent.putExtra("email", email);
+        startActivity(intent);
+        this.finish();
     }
 }

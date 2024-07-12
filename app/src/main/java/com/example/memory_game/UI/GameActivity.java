@@ -1,10 +1,12 @@
-package com.example.memory_game;
+package com.example.memory_game.UI;
 
 import android.os.Bundle;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import com.bumptech.glide.Glide;
+import com.example.memory_game.GameManager;
+import com.example.memory_game.R;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.android.material.textview.MaterialTextView;
 import java.lang.reflect.Field;

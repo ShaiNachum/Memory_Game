@@ -1,4 +1,4 @@
-package com.example.memory_game;
+package com.example.memory_game.Utilities;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
