@@ -3,15 +3,10 @@ package com.example.memory_game.UI;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.CompoundButton;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.memory_game.Model.NewUser;
 import com.example.memory_game.Model.User;
@@ -33,7 +28,6 @@ public class SignUpActivity extends AppCompatActivity {
     private MaterialTextView signup_LBL_enter_email;
     private AppCompatEditText signup_EDT_email;
     private MaterialButton signup_BTN_signup;
-    private boolean isNameEntered;
     UserApi apiService = UserController.getRetrofitInstance().create(UserApi.class);
 
 
@@ -53,8 +47,6 @@ public class SignUpActivity extends AppCompatActivity {
 
     private void signUpClicked() {
         String playerName = signup_EDT_familyName.getText().toString();
-        if (isNotNullOrEmpty(playerName))
-            this.isNameEntered = true;
 
         String email = signup_EDT_email.getText().toString();
 
@@ -69,9 +61,9 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 User createdNewUser = response.body();
-                if (response.isSuccessful()){//&& createdNewUser.getUserId().getEmail() != newUser.getEmail()) {
+                if (response.isSuccessful()){
                     Toast.makeText(SignUpActivity.this, "User created successfully", Toast.LENGTH_LONG).show();
-                    SwitchToGameActivty(createdNewUser.getUserId().getSuperapp(),createdNewUser.getUserId().getEmail());
+                    SwitchToGameActivity(createdNewUser.getUserId().getSuperapp(),createdNewUser.getUserId().getEmail());
                 } else {
                     Toast.makeText(SignUpActivity.this, "Failed to sign up user", Toast.LENGTH_LONG).show();
                     Log.e("Request failed: ", response.message());
@@ -91,7 +83,7 @@ public class SignUpActivity extends AppCompatActivity {
         return input != null && !input.trim().isEmpty();
     }
 
-    private void SwitchToGameActivty(String superapp, String email) {
+    private void SwitchToGameActivity(String superapp, String email) {
         Intent intent = new Intent(SignUpActivity.this, GameActivity.class);
         intent.putExtra("superapp", superapp);
         intent.putExtra("email", email);

@@ -56,17 +56,20 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
+
     @Override
     protected void onStop() {
         super.onStop();
         generalStopTimer();
     }
 
+
     @Override
     protected void onRestart() {
         super.onRestart();
         generalStartTimer();
     }
+
 
     private void generalStartTimer() {
         if (!generalTimerOn) {
@@ -84,10 +87,12 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
+
     private void generalStopTimer() {
         generalTimerOn = false;
         generalTimer.cancel();
     }
+
 
     private void updateTimerUI() {
         long currentMillis = System.currentTimeMillis() - startTime;
@@ -112,8 +117,8 @@ public class GameActivity extends AppCompatActivity {
                 runOnUiThread(() -> openCardsTimerOn = false);
             }
         },delay);
-
     }
+
 
     private void setFirstCard(View view) {
         view.setVisibility(View.INVISIBLE);
@@ -128,6 +133,7 @@ public class GameActivity extends AppCompatActivity {
         }
         this.openCards = 1;
     }
+
 
     private void setSecondCard(View view) {
         view.setVisibility(View.INVISIBLE);
@@ -159,6 +165,7 @@ public class GameActivity extends AppCompatActivity {
         this.openCards = 0;
     }
 
+
     private void gameOver() {
         generalStopTimer();
         Intent intent = new Intent(GameActivity.this, EndActivity.class);
@@ -170,6 +177,7 @@ public class GameActivity extends AppCompatActivity {
         this.finish();
     }
 
+
     private void coverClicked(View view) {
         if(!openCardsTimerOn) {
             if (openCards == 0) {
@@ -180,6 +188,7 @@ public class GameActivity extends AppCompatActivity {
             }
         }
     }
+
 
     private void updateUI() {
         for (int i = 0; i < ROWS; i++) {
@@ -195,6 +204,7 @@ public class GameActivity extends AppCompatActivity {
             main_LBL_score.setText("Score: " + gameManager.getScore());
         }
     }
+
 
     private void initViews() {
         for (int i = 0; i < ROWS; i++) {
@@ -243,6 +253,5 @@ public class GameActivity extends AppCompatActivity {
         main_LBL_score = findViewById(R.id.main_LBL_score);
         main_LBL_time = findViewById(R.id.main_LBL_time);
     }
-
 
 }
